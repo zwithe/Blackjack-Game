@@ -1,22 +1,22 @@
-let AceOfHearts = {
+let aceOfHearts = {
     name: 'ace',
     suit: 'hearts',
     value: '1 or 11', //placeholder probably need an if else here
     quantity: 6
 }
-let AceOfSpades = {
+let aceOfSpades = {
     name: 'ace',
     suit: 'spades',
     value: '1 or 11', //placeholder probably need an if else here
     quantity: 6
 }
-let AceOfClubs = {
+let aceOfClubs = {
     name: 'ace',
     suit: 'clubs',
     value: '1 or 11', //placeholder probably need an if else here
     quantity: 6
 }
-let AceOfDiamonds = {
+let aceOfDiamonds = {
     name: 'ace',
     suit: 'diamonds',
     value: '1 or 11', //placeholder probably need an if else here
@@ -309,4 +309,61 @@ let kingOfDiamonds = {
     suit: 'diamonds',
     value: 10,
     quantity: 6
+}
+//ORDER: HEARTS SPADES CLUB DIAMONDS
+let deck = [aceOfHearts, aceOfSpades, aceOfClubs, aceOfDiamonds, twoOfHearts, twoOfSpades, twoOfClubs, twoOfDiamonds, threeOfHearts, threeOfSpades, threeOfClubs, threeOfDiamonds, fourOfHearts, fourOfSpades, fourOfClubs, fourOfDiamonds, fiveOfHearts, fiveOfSpades, fiveOfClubs, fiveOfDiamonds, sixOfHearts, sixOfSpades, sixOfClubs, sixOfDiamonds, sevenOfHearts, sevenOfSpades, sevenOfClubs, sevenOfDiamonds, eightOfHearts, eightOfSpades, eightOfClubs, eightOfDiamonds, nineOfHearts, nineOfSpades, nineOfClubs, nineOfDiamonds, tenOfHearts, tenOfSpades, tenOfClubs, tenOfDiamonds, jackOfHearts, jackOfSpades, jackOfClubs, jackOfDiamonds, queenOfHearts, queenOfSpades, queenOfClubs, queenOfDiamonds, kingOfHearts, kingOfSpades, kingOfClubs, kingOfDiamonds]
+function shuffle(){
+    aceOfHearts.quantity = 6;
+    aceOfSpades.quantity = 6;
+    aceOfClubs.quantity = 6;
+    aceOfDiamonds.quantity = 6;
+    twoOfHearts.quantity = 6;
+    twoOfSpades.quantity = 6;
+    twoOfClubs.quantity = 6;
+    twoOfDiamonds.quantity = 6;
+    threeOfHearts.quantity = 6;
+    threeOfSpades.quantity = 6;
+    threeOfClubs.quantity = 6;
+    threeOfDiamonds.quantity = 6;
+    fourOfHearts.quantity = 6;
+    fourOfSpades.quantity = 6;
+    fourOfClubs.quantity = 6;
+    fourOfDiamonds.quantity = 6;
+    fiveOfHearts.quantity = 6;
+    fiveOfSpades.quantity = 6;
+    fiveOfClubs.quantity = 6;
+    fiveOfDiamonds.quantity = 6;
+    sixOfHearts.quantity = 6;
+    sixOfSpades.quantity = 6;
+    sixOfClubs.quantity = 6;
+    sixOfDiamonds.quantity = 6;
+    sevenOfHearts.quantity = 6;
+    sevenOfSpades.quantity = 6;
+    sevenOfClubs.quantity = 6;
+    sevenOfDiamonds.quantity = 6;
+    eightOfHearts.quantity = 6;
+    eightOfSpades.quantity = 6;
+    eightOfClubs.quantity = 6;
+    eightOfDiamonds.quantity = 6;
+    nineOfHearts.quantity = 6;
+    nineOfSpades.quantity = 6;
+    nineOfClubs.quantity = 6;
+    nineOfDiamonds.quantity = 6;
+    tenOfHearts.quantity = 6;
+    tenOfSpades.quantity = 6;
+    tenOfClubs.quantity = 6;
+    tenOfDiamonds.quantity = 6;
+    jackOfHearts.quantity = 6;
+    jackOfSpades.quantity = 6;
+    jackOfClubs.quantity = 6;
+    jackOfDiamonds.quantity = 6;
+    queenOfHearts.quantity = 6;
+    queenOfSpades.quantity = 6;
+    queenOfClubs.quantity = 6;
+    queenOfDiamonds.quantity = 6;
+    kingOfHearts.quantity = 6;
+    kingOfSpades.quantity = 6;
+    kingOfClubs.quantity = 6;
+    kingOfDiamonds.quantity = 6;
+    deck = [aceOfHearts, aceOfSpades, aceOfClubs, aceOfDiamonds, twoOfHearts, twoOfSpades, twoOfClubs, twoOfDiamonds, threeOfHearts, threeOfSpades, threeOfClubs, threeOfDiamonds, fourOfHearts, fourOfSpades, fourOfClubs, fourOfDiamonds, fiveOfHearts, fiveOfSpades, fiveOfClubs, fiveOfDiamonds, sixOfHearts, sixOfSpades, sixOfClubs, sixOfDiamonds, sevenOfHearts, sevenOfSpades, sevenOfClubs, sevenOfDiamonds, eightOfHearts, eightOfSpades, eightOfClubs, eightOfDiamonds, nineOfHearts, nineOfSpades, nineOfClubs, nineOfDiamonds, tenOfHearts, tenOfSpades, tenOfClubs, tenOfDiamonds, jackOfHearts, jackOfSpades, jackOfClubs, jackOfDiamonds, queenOfHearts, queenOfSpades, queenOfClubs, queenOfDiamonds, kingOfHearts, kingOfSpades, kingOfClubs, kingOfDiamonds]
 }
