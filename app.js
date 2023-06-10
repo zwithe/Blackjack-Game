@@ -1,4 +1,23 @@
-let aceOfHearts = {
+const cardNames = ['a', '2', '3', '4', '5', '6', '7', '8', '9','10', 'j', 'q', 'k'];
+const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
+const deck = [];
+
+function buildDeck(numberOfDecks){
+    for(let suit of suits){
+        for(let cardName of cardNames){
+            deck.push({
+                name: cardName,
+                suit: suit,
+                value: cardName, //replace with function later
+            })
+            
+        }
+    }
+}
+buildDeck();
+console.log(deck);
+
+/*let aceOfHearts = {
     name: 'ace',
     suit: 'hearts',
     value: '1 or 11', //placeholder probably need an if else here
@@ -309,9 +328,9 @@ let kingOfDiamonds = {
     suit: 'diamonds',
     value: 10,
     quantity: 6
-}
+}*/
 //ORDER: HEARTS SPADES CLUB DIAMONDS
-let deck = [aceOfHearts, aceOfSpades, aceOfClubs, aceOfDiamonds, twoOfHearts, twoOfSpades, twoOfClubs, twoOfDiamonds, threeOfHearts, threeOfSpades, threeOfClubs, threeOfDiamonds, fourOfHearts, fourOfSpades, fourOfClubs, fourOfDiamonds, fiveOfHearts, fiveOfSpades, fiveOfClubs, fiveOfDiamonds, sixOfHearts, sixOfSpades, sixOfClubs, sixOfDiamonds, sevenOfHearts, sevenOfSpades, sevenOfClubs, sevenOfDiamonds, eightOfHearts, eightOfSpades, eightOfClubs, eightOfDiamonds, nineOfHearts, nineOfSpades, nineOfClubs, nineOfDiamonds, tenOfHearts, tenOfSpades, tenOfClubs, tenOfDiamonds, jackOfHearts, jackOfSpades, jackOfClubs, jackOfDiamonds, queenOfHearts, queenOfSpades, queenOfClubs, queenOfDiamonds, kingOfHearts, kingOfSpades, kingOfClubs, kingOfDiamonds]
+/*let deck = [aceOfHearts, aceOfSpades, aceOfClubs, aceOfDiamonds, twoOfHearts, twoOfSpades, twoOfClubs, twoOfDiamonds, threeOfHearts, threeOfSpades, threeOfClubs, threeOfDiamonds, fourOfHearts, fourOfSpades, fourOfClubs, fourOfDiamonds, fiveOfHearts, fiveOfSpades, fiveOfClubs, fiveOfDiamonds, sixOfHearts, sixOfSpades, sixOfClubs, sixOfDiamonds, sevenOfHearts, sevenOfSpades, sevenOfClubs, sevenOfDiamonds, eightOfHearts, eightOfSpades, eightOfClubs, eightOfDiamonds, nineOfHearts, nineOfSpades, nineOfClubs, nineOfDiamonds, tenOfHearts, tenOfSpades, tenOfClubs, tenOfDiamonds, jackOfHearts, jackOfSpades, jackOfClubs, jackOfDiamonds, queenOfHearts, queenOfSpades, queenOfClubs, queenOfDiamonds, kingOfHearts, kingOfSpades, kingOfClubs, kingOfDiamonds]*/
 function shuffle(){
     aceOfHearts.quantity = 6;
     aceOfSpades.quantity = 6;
