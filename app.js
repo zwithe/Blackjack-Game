@@ -4,15 +4,29 @@ let ace = 11 //TODO; this variable needs to not be global
 const values = [ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 const deck = [];
 const myHand  = {
-    cards: [],
-    //totalValue: //TODO:function here that sums all values of cards and deals with ace
+    cards: [],//TODO:function here that sums all values of cards and deals with ace
+    aceValue: 11,
+    totalValue: function(){
+        for(let i = 0; i < myHand.cards.length; i++){
+            if (myHand.cards[i].value = 11){
+                myHand.cards[i].value = myHand.aceValue
+            }
+            else{
+
+            }
+
+        }
+        
+    }
 }
 const dealerHand  = {
     cards: [],
+    aceValue: 11,
     //totalValue: //TODO:function here that sums all values of cards and deals with ace
 }
 const splitHand  = {
     cards: [],
+    aceValue: 11,    
     //totalValue: //TODO:function here that sums all values of cards and deals with ace
 }
 function buildDeck(numberOfDecks){
