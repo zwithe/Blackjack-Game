@@ -1,0 +1,19 @@
+button{
+    background-color: RGB(255, 255, 20);
+    border-radius: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-family: "Abril Fatface";
+    font-size: 1em;
+    border: none;
+    box-shadow: 6px 6px 1px 0px rgba(164, 164, 0, 1);
+}
+#playArea{
+   display: flex; 
+}
+body{
+    margin: 0px;
+    background-image: url(assets/green-table-with-green-background.jpg);
+}
