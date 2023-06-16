@@ -10,6 +10,17 @@ button{
     border: none;
     box-shadow: 6px 6px 1px 0px rgba(164, 164, 0, 1);
 }
+#buttonBox{
+    background-color: rgba(71, 71, 72, 0.825);
+    padding: 1em;
+    border-radius: 1em 1em 0px 0px;
+    border: 10px solid rgb(147, 147, 147);
+    border-bottom-style: hidden;
+    border-top-width: 15px;
+    position: fixed;
+    bottom: 0em;
+    right: 15em;
+}
 #playArea{
    display: flex; 
 }

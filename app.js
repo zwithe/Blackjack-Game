@@ -94,16 +94,41 @@ function buildDeck(numberOfDecks){
 buildDeck(1);
 console.log(deck)
 function playerDraw(){
-    const myCard1 = Math.round(Math.random() * deck.length)
-    myHand.cards.push(deck[myCard1])
-    deck.splice(myCard1, 1)
+    if(deck[0] === undefined){
+        buildDeck(6)
+        playerDraw()
+    }
+    else{
+        const myCard1 = Math.round(Math.random() * (deck.length - 1))
+        myHand.cards.push(deck[myCard1])
+        deck.splice(myCard1, 1)
+        myHand.totalValue()
+    }
 }
 function dealerDraw(){
-    const dealerCard1 = Math.round(Math.random() * deck.length)
+    if(deck[0] === undefined){
+        buildDeck(6)
+        dealerDraw()
+    }
+    else{
+    const dealerCard1 = Math.round(Math.random() * (deck.length - 1))
     dealerHand.cards.push(deck[dealerCard1])
     deck.splice(dealerCard1, 1)
+    dealerHand.totalValue()
+    }
 }
-//Might need split draw
+function splitDraw(){
+    if(deck[0] === undefined){
+        buildDeck(6)
+        splitDraw()
+    }
+    else{
+    const splitCard1 = Math.round(Math.random() * (deck.length - 1))
+    splitHand.cards.push(deck[splitCard1])
+    deck.splice(splitCard1, 1)
+    splitHand.totalValue()
+    }
+}
 function deal(){
     myHand.cards = []
     dealerHand.cards = []
@@ -112,6 +137,12 @@ function deal(){
     playerDraw()
     dealerDraw()
     dealerDraw()
+    if(myHand.cards[0].name === myHand.cards[1].name){
+        let splitButton = document.createElement("button")
+        splitButton.innerHTML = "Split"
+        splitButton.setAttribute("id", "splitButton")
+        document.getElementById("buttonBox").append(splitButton)
+    }
     console.log(dealerHand)
     console.log(myHand)
     console.log(deck)
@@ -122,5 +153,4 @@ function displayHand(){
 deal()
 myHand.totalValue()
 document.getElementById("hit").addEventListener("click", playerDraw)
-document.getElementById("hit").addEventListener("click", myHand.totalValue)
 document.getElementById("hit").addEventListener("click", displayHand)
