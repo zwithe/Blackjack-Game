@@ -28,3 +28,22 @@ body{
     margin: 0px;
     background-image: url(assets/green-table-with-green-background.jpg);
 }
+.card{
+    background-color: #fff;
+    border-radius: .5em;
+    font-family: "Abril Fatface";
+    font-size: 2em;
+    height: 6em;
+    width: 4.5em;
+}
+.card img{
+    height: auto;
+    width: 4.5em;
+}
+.cardBack{
+    background-color: #eb3238;
+    border-radius: 1em;
+    height: 10em;
+    width: 7em;
+    border: 1em solid #fff;
+}

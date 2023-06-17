@@ -1,6 +1,6 @@
-const cardNames = ['a', '2', '3', '4', '5', '6', '7', '8', '9','10', 'j', 'q', 'k'];
+const cardNames = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
-let ace = 11 //TODO; this variable needs to not be global
+let ace = 11 
 const values = [ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 const deck = [];
 const myHand  = {
@@ -149,8 +149,71 @@ function deal(){
 }
 function displayHand(){
     console.log(myHand)
+    renderMyHand()
+}
+function clearMyHand(){
+    let currentHand = document.querySelectorAll('.card')
+    for(let i = 0; i < currentHand.length; i++){
+        currentHand[i].remove()
+    }
+}
+function renderMyHand(){
+    clearMyHand()
+    for(let i = 0; i < myHand.cards.length; i++){
+        let card = document.createElement("div")
+        card.innerHTML = myHand.cards[i].name
+        card.setAttribute("class", "card")
+        document.getElementById("myCards").append(card)
+        if(myHand.cards[i].suit === 'clubs'){
+            let clubs = document.createElement("img")
+            clubs.setAttribute("src", "assets/clubs.png")
+            card.append(clubs)
+        }
+        else if(myHand.cards[i].suit === 'spades'){
+            let spades = document.createElement("img")
+            spades.setAttribute("src", "assets/spades.png")
+            card.append(spades)
+        }
+        else if(myHand.cards[i].suit === 'hearts'){
+            card.style.color = "#eb3238"
+            let hearts = document.createElement("img")
+            hearts.setAttribute("src", "assets/hearts.png")
+            card.append(hearts)
+        }
+        else if(myHand.cards[i].suit === 'diamonds'){
+            card.style.color = "#eb3238"
+            let diamonds = document.createElement("img")
+            diamonds.setAttribute("src", "assets/diamonds.png")
+            card.append(diamonds)
+        }   
+        
+    }
+}
+function renderDealerHand(){
+    
+}
+function deal(){
+    myHand.cards = []
+    dealerHand.cards = []
+    splitHand.cards = []
+    playerDraw()
+    playerDraw()
+    dealerDraw()
+    dealerDraw()
+    if(myHand.cards[0].name === myHand.cards[1].name){
+        let splitButton = document.createElement("button")
+        splitButton.innerHTML = "Split"
+        splitButton.setAttribute("id", "splitButton")
+        document.getElementById("buttonBox").append(splitButton)
+    }
+    renderMyHand()
+    console.log(dealerHand)
+    console.log(myHand)
+    console.log(deck)
+    myHand.totalValue()
 }
 deal()
-myHand.totalValue()
+
+
 document.getElementById("hit").addEventListener("click", playerDraw)
 document.getElementById("hit").addEventListener("click", displayHand)
