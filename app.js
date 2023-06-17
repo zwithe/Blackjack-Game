@@ -150,15 +150,20 @@ function deal(){
 function displayHand(){
     console.log(myHand)
     renderMyHand()
+    renderDealerHand()
 }
-function clearMyHand(){
+function clearHand(){
     let currentHand = document.querySelectorAll('.card')
     for(let i = 0; i < currentHand.length; i++){
         currentHand[i].remove()
     }
+    let cardBack = document.querySelectorAll('.cardBack')
+    for(let i = 0; i < cardBack.length; i++){
+    cardBack[i].remove()
+    }
 }
 function renderMyHand(){
-    clearMyHand()
+    clearHand()
     for(let i = 0; i < myHand.cards.length; i++){
         let card = document.createElement("div")
         card.innerHTML = myHand.cards[i].name
@@ -190,7 +195,35 @@ function renderMyHand(){
     }
 }
 function renderDealerHand(){
-    
+    let card = document.createElement("div")
+    card.innerHTML = dealerHand.cards[0].name
+    card.setAttribute("class", "card")
+    document.getElementById("dealerCards").append(card)
+    if(dealerHand.cards[0].suit === 'clubs'){
+        let clubs = document.createElement("img")
+        clubs.setAttribute("src", "assets/clubs.png")
+        card.append(clubs)
+    }
+    else if(dealerHand.cards[0].suit === 'spades'){
+        let spades = document.createElement("img")
+        spades.setAttribute("src", "assets/spades.png")
+        card.append(spades)
+    }
+    else if(dealerHand.cards[0].suit === 'hearts'){
+        card.style.color = "#eb3238"
+        let hearts = document.createElement("img")
+        hearts.setAttribute("src", "assets/hearts.png")
+        card.append(hearts)
+    }
+    else if(dealerHand.cards[0].suit === 'diamonds'){
+        card.style.color = "#eb3238"
+        let diamonds = document.createElement("img")
+        diamonds.setAttribute("src", "assets/diamonds.png")
+        card.append(diamonds)
+    }
+    let cardBack = document.createElement("div")
+    cardBack.setAttribute("class", "cardBack")
+    document.getElementById("dealerCards").append(cardBack)
 }
 function deal(){
     myHand.cards = []
@@ -207,6 +240,7 @@ function deal(){
         document.getElementById("buttonBox").append(splitButton)
     }
     renderMyHand()
+    renderDealerHand()
     console.log(dealerHand)
     console.log(myHand)
     console.log(deck)
