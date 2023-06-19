@@ -110,6 +110,9 @@ function playerDraw(){
         myHand.cards.push(deck[myCard1])
         deck.splice(myCard1, 1)
         myHand.countTotal()
+        if(myHand.total > 21){
+            playerBust() 
+        }
     }
 }
 function dealerDraw(){
@@ -318,6 +321,17 @@ function dealerWins(){
     }
     else{
         displayResults('The dealer wins!')
+        turnsPlayed++
+    }
+}
+function playerBust(){
+    console.log('dealer wins')
+    playerMoney = playerMoney - currentBet
+    if(playerMoney <= 0){
+        gameOver()
+    }
+    else{
+        displayResults('You busted the dealer wins!')
         turnsPlayed++
     }
 }
