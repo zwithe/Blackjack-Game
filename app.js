@@ -1,12 +1,15 @@
 const cardNames = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
-let ace = 11 
-const values = [ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-const deck = [];
+const values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+let deck = [];
+let playerMoney = 2500
+let currentBet = 50
+let turnsPlayed = 0
 const myHand  = {
     cards: [],
     bust: false,
-    totalValue: function(){
+    total: 0,
+    countTotal: function(){
         let myTotal = 0
         for(let i = 0; i < myHand.cards.length; i++){
             myTotal = myTotal + myHand.cards[i].value 
@@ -16,15 +19,17 @@ const myHand  = {
             for(let i = 0; i < myHand.cards.length; i++){
                 if(myHand.cards[i].value === 11){
                     myHand.cards[i].value = 1
-                    myHand.totalValue()
+                    myHand.countTotal()
                 }
                 else{
                     myHand.bust = true
+                    myHand.total = myTotal
                 } 
             }
         }
         else{
-            myHand.bust = false
+            myHand.bust = false;
+            myHand.total = myTotal;
         }
     },
     
@@ -32,7 +37,8 @@ const myHand  = {
 const dealerHand  = {
     cards: [],
     bust: false,
-    totalValue: function(){
+    total: 0,
+    countTotal: function(){
         let dealerTotal = 0
         for(let i = 0; i < dealerHand.cards.length; i++){
             dealerTotal = dealerTotal + dealerHand.cards[i].value
@@ -41,23 +47,24 @@ const dealerHand  = {
             for(let i = 0; i < dealerHand.cards.length; i++){
                 if(dealerHand.cards[i].value === 11){
                     dealerHand.cards[i].value = 1
-                    dealerHand.totalValue()
+                    dealerHand.countTotal()
                 }
                 else{
                     dealerHand.bust = true
+                    dealerHand.total = dealerTotal
                 } 
             }
         }
         else{
-            dealerHand.bust = false
+            dealerHand.bust = false;
+            dealerHand.total = dealerTotal;
         }
-    },
-    
+    }, 
 }
 const splitHand  = {
     cards: [],
     bust: false,    
-    totalValue: function(){
+    countTotal: function(){
         let splitTotal = 0
         for(let i = 0; i < splitHand.cards.length; i++){
             splitTotal = splitTotal + splitHand.cards[i].value
@@ -66,7 +73,7 @@ const splitHand  = {
             for(let i = 0; i < splitHand.cards.length; i++){
                 if(splitHand.cards[i].value === 11){
                     splitHand.cards[i].value = 1
-                    splitHand.totalValue()
+                    splitHand.countTotal()
                 }
                 else{
                     splitHand.bust = true
@@ -75,6 +82,7 @@ const splitHand  = {
         }
         else{
             splitHand.bust = false
+            return splitTotal
         } 
     },
     
@@ -91,8 +99,7 @@ function buildDeck(numberOfDecks){
             }
     }}
 }
-buildDeck(1);
-console.log(deck)
+buildDeck(6);
 function playerDraw(){
     if(deck[0] === undefined){
         buildDeck(6)
@@ -102,7 +109,7 @@ function playerDraw(){
         const myCard1 = Math.round(Math.random() * (deck.length - 1))
         myHand.cards.push(deck[myCard1])
         deck.splice(myCard1, 1)
-        myHand.totalValue()
+        myHand.countTotal()
     }
 }
 function dealerDraw(){
@@ -114,7 +121,7 @@ function dealerDraw(){
     const dealerCard1 = Math.round(Math.random() * (deck.length - 1))
     dealerHand.cards.push(deck[dealerCard1])
     deck.splice(dealerCard1, 1)
-    dealerHand.totalValue()
+    dealerHand.countTotal()
     }
 }
 function splitDraw(){
@@ -126,26 +133,8 @@ function splitDraw(){
     const splitCard1 = Math.round(Math.random() * (deck.length - 1))
     splitHand.cards.push(deck[splitCard1])
     deck.splice(splitCard1, 1)
-    splitHand.totalValue()
+    splitHand.countTotal()
     }
-}
-function deal(){
-    myHand.cards = []
-    dealerHand.cards = []
-    splitHand.cards = []
-    playerDraw()
-    playerDraw()
-    dealerDraw()
-    dealerDraw()
-    if(myHand.cards[0].name === myHand.cards[1].name){
-        let splitButton = document.createElement("button")
-        splitButton.innerHTML = "Split"
-        splitButton.setAttribute("id", "splitButton")
-        document.getElementById("buttonBox").append(splitButton)
-    }
-    console.log(dealerHand)
-    console.log(myHand)
-    console.log(deck)
 }
 function displayHand(){
     console.log(myHand)
@@ -225,6 +214,196 @@ function renderDealerHand(){
     cardBack.setAttribute("class", "cardBack")
     document.getElementById("dealerCards").append(cardBack)
 }
+function sleep(time){
+    return new Promise( resolve => {
+        setTimeout(resolve, time)
+    })
+}
+async function renderDealerTurn(){
+    await sleep(400)
+    clearHand()
+    for(let i = 0; i < dealerHand.cards.length; i++){
+        let card = document.createElement("div")
+        card.innerHTML = dealerHand.cards[i].name
+        card.setAttribute("class", "card")
+        document.getElementById("dealerCards").append(card)
+        if(dealerHand.cards[i].suit === 'clubs'){
+            let clubs = document.createElement("img")
+            clubs.setAttribute("src", "assets/clubs.png")
+            card.append(clubs)
+        }
+        else if(dealerHand.cards[i].suit === 'spades'){
+            let spades = document.createElement("img")
+            spades.setAttribute("src", "assets/spades.png")
+            card.append(spades)
+        }
+        else if(dealerHand.cards[i].suit === 'hearts'){
+            card.style.color = "#eb3238"
+            let hearts = document.createElement("img")
+            hearts.setAttribute("src", "assets/hearts.png")
+            card.append(hearts)
+        }
+        else if(dealerHand.cards[i].suit === 'diamonds'){
+            card.style.color = "#eb3238"
+            let diamonds = document.createElement("img")
+            diamonds.setAttribute("src", "assets/diamonds.png")
+            card.append(diamonds)
+        }   
+        
+    }
+    for(let i = 0; i < myHand.cards.length; i++){
+        let card = document.createElement("div")
+        card.innerHTML = myHand.cards[i].name
+        card.setAttribute("class", "card")
+        document.getElementById("myCards").append(card)
+        if(myHand.cards[i].suit === 'clubs'){
+            let clubs = document.createElement("img")
+            clubs.setAttribute("src", "assets/clubs.png")
+            card.append(clubs)
+        }
+        else if(myHand.cards[i].suit === 'spades'){
+            let spades = document.createElement("img")
+            spades.setAttribute("src", "assets/spades.png")
+            card.append(spades)
+        }
+        else if(myHand.cards[i].suit === 'hearts'){
+            card.style.color = "#eb3238"
+            let hearts = document.createElement("img")
+            hearts.setAttribute("src", "assets/hearts.png")
+            card.append(hearts)
+        }
+        else if(myHand.cards[i].suit === 'diamonds'){
+            card.style.color = "#eb3238"
+            let diamonds = document.createElement("img")
+            diamonds.setAttribute("src", "assets/diamonds.png")
+            card.append(diamonds)
+        }   
+        
+    }
+}
+function playerWins(){
+    console.log('player wins')
+    playerMoney = playerMoney + (currentBet * 2)
+    displayResults('You win!')
+    turnsPlayed++
+}
+function dealerBust(){
+    console.log('player wins')
+    playerMoney = playerMoney + currentBet
+    displayResults('The dealer busted! You win!')
+    turnsPlayed++
+}
+function draw(){
+    console.log('draw')
+    displayResults('You tied the dealer. Your bet is returned')
+    turnsPlayed++
+}
+function blackjack(){
+    if(myHand.total === dealerHand.total){
+        stand()
+    }
+    else{
+        console.log('Blackjack')
+        renderDealerTurn()
+        playerMoney = playerMoney + (currentBet * 1.5)
+        displayResults('You got Blackjack!')
+        turnsPlayed++
+    }
+}
+function dealerWins(){
+    console.log('dealer wins')
+    playerMoney = playerMoney - currentBet
+    if(playerMoney <= 0){
+        gameOver()
+    }
+    else{
+        displayResults('The dealer wins!')
+        turnsPlayed++
+    }
+}
+function Surrender(){
+    playerMoney = playerMoney - (currentBet / 2)
+    if(playerMoney <= 0){
+        gameOver()
+    }
+    else{
+        displayResults('You surrendered! Half your bet is returned.')
+        turnsPlayed++
+    }
+}
+function doubleDown(){
+    currentBet = currentBet * 2
+    document.getElementById("double").remove()
+}
+function displayResults(Message){
+    let buttonBox = document.getElementById("buttonBox")
+    buttonBox.innerHTML = `${Message}`
+    let nextHand = document.createElement("button")
+    nextHand.setAttribute("id", "nextHand")
+    nextHand.innerHTML = "Next Hand"
+    buttonBox.append(nextHand)
+    document.getElementById("nextHand").addEventListener("click", playAgain)
+}
+function removeSurrender(){
+    document.getElementById("surrender").remove()
+}
+function playAgain(){
+    resetButtons()
+    deal()
+}
+function resetGame(){
+    playerMoney = 2500
+    currentBet = 50
+    turnsPlayed = 0
+    deck = []
+    buildDeck(6)
+    let buttonBox = document.getElementById("buttonBox")
+    buttonBox.innerHTML = 'Welcome! This is my Blackjack game. The dealer stands on all totals 17 or higher. Face cards are worth 10 and aces are either 1 or 11. The goal is to get the highest number possible without going over 21!<button id="start">Click here to begin</button>'
+    document.getElementById('start').addEventListener('click', playAgain)
+}
+function gameOver(){
+    let buttonBox = document.getElementById("buttonBox")
+    buttonBox.innerHTML = `Game Over. You ran out of money! Your 2500$ lasted you ${turnsPlayed} Hands. Hit the button to play again!`
+    let reset = document.createElement("button")
+    reset.setAttribute("id", "resetGame")
+    reset.innerHTML = "Try again"
+    buttonBox.append(reset)
+    document.getElementById("resetGame").addEventListener("click", resetGame)
+}
+async function stand(){
+   await renderDealerTurn()
+   dealerHand.countTotal()
+    if(dealerHand.total <= 16){
+        dealerDraw()
+        await renderDealerTurn()
+        stand()
+    } 
+    else{
+        if(myHand.total > dealerHand.total){
+            playerWins()
+        } 
+        else if(myHand.total === dealerHand.total){
+            draw()
+        }
+        else if(dealerHand.bust === true){
+            dealerBust()
+        }
+        else{
+            dealerWins()
+        }
+    }
+
+}   
+function resetButtons(){
+    let buttonBox = document.getElementById("buttonBox")
+    buttonBox.innerHTML = '<button id="hit">Hit</button><button id="stand">Stand</button><button id="double">Double Down</button><button id="surrender">Surrender</button>'
+    document.getElementById("hit").addEventListener("click", playerDraw)
+    document.getElementById("hit").addEventListener("click", displayHand)
+    document.getElementById("hit").addEventListener("click", removeSurrender)
+    document.getElementById("stand").addEventListener("click", stand)
+    document.getElementById("surrender").addEventListener("click", Surrender)
+    document.getElementById("double").addEventListener("click", doubleDown)
+}
 function deal(){
     myHand.cards = []
     dealerHand.cards = []
@@ -233,21 +412,23 @@ function deal(){
     playerDraw()
     dealerDraw()
     dealerDraw()
-    if(myHand.cards[0].name === myHand.cards[1].name){
+    /*if(myHand.cards[0].name === myHand.cards[1].name){
         let splitButton = document.createElement("button")
         splitButton.innerHTML = "Split"
         splitButton.setAttribute("id", "splitButton")
         document.getElementById("buttonBox").append(splitButton)
-    }
+    }*/
     renderMyHand()
     renderDealerHand()
     console.log(dealerHand)
     console.log(myHand)
     console.log(deck)
-    myHand.totalValue()
+    myHand.countTotal()
+    dealerHand.countTotal()
+    currentBet = 50
+    if(myHand.total === 21){
+        blackjack()
+    }
 }
-deal()
+document.getElementById('start').addEventListener('click', playAgain)
 
-
-document.getElementById("hit").addEventListener("click", playerDraw)
-document.getElementById("hit").addEventListener("click", displayHand)

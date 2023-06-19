@@ -20,6 +20,14 @@ button{
     position: fixed;
     bottom: 0em;
     right: 15em;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 14em;
+    gap: 1em 1em;
+    justify-content: center;
+    color: #fff;
+    font-family: Helvetica, sans-serif;
 }
 #playArea{
    display: flex; 
@@ -35,6 +43,7 @@ body{
     font-size: 2em;
     height: 6em;
     width: 4.5em;
+    z-index: auto;
 }
 .card img{
     height: auto;
@@ -46,4 +55,10 @@ body{
     height: 10em;
     width: 7em;
     border: 1em solid #fff;
+}
+.resultsScreen{
+    z-index: 1;
+    background-color: rgba(71, 71, 72, 0.825);
+    height: 100vh;
+    width: 100vw;
 }
