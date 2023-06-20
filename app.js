@@ -139,7 +139,7 @@ function playerDraw(){
         playerHand.cards.push(deck[playerCard])
         deck.splice(playerCard, 1)
         playerHand.countTotal()
-        if(playerHand.total > 21){
+        if(playerHand.bust === true){
             playerBust() 
         }
     }
@@ -178,6 +178,7 @@ function displayHand(){
 function playerHit(){
     playerDraw()
     displayHand()
+    playerHand.countTotal()
     removeSurrender()
 }
 function clearHand(){
@@ -382,6 +383,7 @@ function displayResults(Message){
     nextHand.innerHTML = "Next Hand"
     buttonBox.append(nextHand)
     document.getElementById("nextHand").addEventListener("click", playAgain)
+    gameStats.currentBet = 0
     gameStats.renderMoney()
 }
 //Result handling functions end
