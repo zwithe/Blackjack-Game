@@ -199,23 +199,27 @@ function renderPlayerHand(){
         if(playerHand.cards[i].suit === 'clubs'){
             let clubs = document.createElement("img")
             clubs.setAttribute("src", "assets/clubs.png")
+            clubs.setAttribute("alt", "The Clubs symbol")
             card.append(clubs)
         }
         else if(playerHand.cards[i].suit === 'spades'){
             let spades = document.createElement("img")
             spades.setAttribute("src", "assets/spades.png")
+            spades.setAttribute("alt", "The Spades symbol")
             card.append(spades)
         }
         else if(playerHand.cards[i].suit === 'hearts'){
             card.style.color = "#eb3238"
             let hearts = document.createElement("img")
             hearts.setAttribute("src", "assets/hearts.png")
+            hearts.setAttribute("alt", "The Hearts symbol")
             card.append(hearts)
         }
         else if(playerHand.cards[i].suit === 'diamonds'){
             card.style.color = "#eb3238"
             let diamonds = document.createElement("img")
             diamonds.setAttribute("src", "assets/diamonds.png")
+            diamonds.setAttribute("alt", "The Diamonds symbol")
             card.append(diamonds)
         }   
         
@@ -230,23 +234,27 @@ function renderDealerHand(){
     if(dealerHand.cards[0].suit === 'clubs'){
         let clubs = document.createElement("img")
         clubs.setAttribute("src", "assets/clubs.png")
+        clubs.setAttribute("alt", "The Clubs symbol")
         card.append(clubs)
     }
     else if(dealerHand.cards[0].suit === 'spades'){
         let spades = document.createElement("img")
         spades.setAttribute("src", "assets/spades.png")
+        spades.setAttribute("alt", "The Spades symbol")
         card.append(spades)
     }
     else if(dealerHand.cards[0].suit === 'hearts'){
         card.style.color = "#eb3238"
         let hearts = document.createElement("img")
         hearts.setAttribute("src", "assets/hearts.png")
+        hearts.setAttribute("alt", "The Hearts symbol")
         card.append(hearts)
     }
     else if(dealerHand.cards[0].suit === 'diamonds'){
         card.style.color = "#eb3238"
         let diamonds = document.createElement("img")
         diamonds.setAttribute("src", "assets/diamonds.png")
+        diamonds.setAttribute("alt", "The Diamonds symbol")
         card.append(diamonds)
     }
     let cardBack = document.createElement("div")
