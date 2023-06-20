@@ -129,7 +129,7 @@ function buildDeck(numberOfDecks){
     }}
 }
 buildDeck(6);
-function playerDraw(){
+async function playerDraw(){
     if(deck[0] === undefined){
         buildDeck(6)
         playerDraw()
@@ -138,7 +138,7 @@ function playerDraw(){
         const playerCard = Math.round(Math.random() * (deck.length - 1))
         playerHand.cards.push(deck[playerCard])
         deck.splice(playerCard, 1)
-        playerHand.countTotal()
+        await playerHand.countTotal()
         if(playerHand.bust === true){
             playerBust() 
         }
