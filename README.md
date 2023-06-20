@@ -1,2 +1,4 @@
 # Blackjack-Game
 Green texture from freepik.com
+This is my first full project from scratch! The hardest part was practicing D.R.Y. things like copy paste, functions, control shift l, and multi cursor make repition so easy. I wanted to do so much more!
+I wanted a split fuction! I wanted to be able to see the current bet and total money (first on the todo list).I wanted a little leaderboard of the local high score (longest lasted with 2500$). I wanted a winrate counter. I wanted a see optimal play function that would show you what you would do following basic strategy. I might come back and work on these later. I have a bunch of functions that all they do is call other fuctions. I'm not sure if that's the best way of doing things. It kinda just worked out with the way I wrote certian things needed multiple functions to be called.

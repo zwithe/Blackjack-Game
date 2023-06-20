@@ -1,10 +1,10 @@
 const cardNames = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
-const values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-let deck = [];
-let playerMoney = 2500
-let currentBet = 50
-let turnsPlayed = 0
+const values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+const deck = [];
+let playerMoney = 2500;
+let currentBet = 50;
+let turnsPlayed = 0;
 const playerHand  = {
     cards: [],
     bust: false,
@@ -127,6 +127,7 @@ function dealerDraw(){
     dealerHand.countTotal()
     }
 }
+// TODO: currently unused
 function splitDraw(){
     if(deck[0] === undefined){
         buildDeck(6)
@@ -191,6 +192,7 @@ function renderPlayerHand(){
         
     }
 }
+//this renders the dealer's hand BEFORE the card is flipped
 function renderDealerHand(){
     let card = document.createElement("div")
     card.innerHTML = dealerHand.cards[0].name
@@ -227,6 +229,7 @@ function sleep(time){
         setTimeout(resolve, time)
     })
 }
+//this renders the dealer's hand AFTER card is flipped and during their turn
 async function renderDealerTurn(){
     await sleep(500)
     clearHand()
@@ -340,10 +343,12 @@ function displayResults(Message){
 function removeSurrender(){
     document.getElementById("surrender").remove()
 }
+//playAgain resets buttons and deals
 function playAgain(){
     resetButtons()
     deal()
 }
+// resetGame resets money and starting text
 function resetGame(){
     playerMoney = 2500
     currentBet = 50
@@ -363,6 +368,7 @@ function gameOver(){
     buttonBox.append(reset)
     document.getElementById("resetGame").addEventListener("click", resetGame)
 }
+// Dealer logic is here as well as the link to the result functions
 async function stand(){
    await renderDealerTurn()
    dealerHand.countTotal()
@@ -386,7 +392,8 @@ async function stand(){
         }
     }
 
-}   
+}
+// buttons for default play state are found here   
 function resetButtons(){
     let buttonBox = document.getElementById("buttonBox")
     buttonBox.innerHTML = '<button id="hit">Hit</button><button id="stand">Stand</button><button id="double">Double Down</button><button id="surrender">Surrender</button>'
