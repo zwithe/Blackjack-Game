@@ -19,7 +19,7 @@ button{
     border-top-width: 15px;
     position: fixed;
     bottom: 0em;
-    right: 15em;
+    right: 10em;
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
@@ -28,6 +28,35 @@ button{
     justify-content: center;
     color: #fff;
     font-family: Helvetica, sans-serif;
+}
+#moneyBox{
+    background-color: rgba(71, 71, 72, 0.825);
+    padding: 1em;
+    border-radius: 1em 1em 0px 0px;
+    border: 10px solid rgb(147, 147, 147);
+    border-bottom-style: hidden;
+    border-top-width: 15px;
+    position: fixed;
+    bottom: 0em;
+    left: 5em;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 25em;
+    max-height: 6.8em;
+    gap: 1em 1em;
+    justify-content: flex-start;
+    color: #fff;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+#moneyBox img{
+    width: auto;
+    height: 6em;
+}
+#moneyBox div{
+    width: 100%;
+    height: auto;
+    font-size: 1.3em;
 }
 #dealerCards{
     display: flex;
@@ -45,10 +74,15 @@ button{
     align-items: center;
     gap: 1em;
 }
-
+#playArea{
+    position: fixed;
+    height: auto;
+    width: 100%;
+}
 body{
     margin: 0px;
-    background-image: url(assets/green-table-with-green-background.jpg);
+    background-image: url("assets/green-table-with-green-background.jpg");
+    background-size: 100%;
 }
 .card{
     background-color: #fff;
