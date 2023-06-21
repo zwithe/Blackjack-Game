@@ -48,6 +48,7 @@ const playerHand  = {
             for(let i = 0; i < playerHand.cards.length; i++){
                 if(playerHand.cards[i].value === 11){
                     playerHand.cards[i].value = 1
+                    i = playerHand.cards.length
                     playerHand.countTotal()
                 }
                 else{
@@ -76,6 +77,7 @@ const dealerHand  = {
             for(let i = 0; i < dealerHand.cards.length; i++){
                 if(dealerHand.cards[i].value === 11){
                     dealerHand.cards[i].value = 1
+                    i = dealerHand.cards.length
                     dealerHand.countTotal()
                 }
                 else{
@@ -102,6 +104,7 @@ const splitHand  = {
             for(let i = 0; i < splitHand.cards.length; i++){
                 if(splitHand.cards[i].value === 11){
                     splitHand.cards[i].value = 1
+                    i = splitHand.cards.length
                     splitHand.countTotal()
                 }
                 else{
