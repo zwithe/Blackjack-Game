@@ -14,7 +14,7 @@ const gameStats = {
         if(this.currentBet > this.playerMoney){
             this.currentBet = this.playerMoney
             this.renderMoney()
-            removeSurrender()
+            removeAfterHit()
         }
         else{
             document.getElementById("bet").innerHTML = `$${this.currentBet}`
@@ -182,7 +182,7 @@ function playerHit(){
     playerDraw()
     displayHand()
     playerHand.countTotal()
-    removeSurrender()
+    removeAfterHit()
 }
 function clearHand(){
     let currentHand = document.querySelectorAll('.card')
@@ -374,9 +374,14 @@ function Surrender(){
     }
 }
 function doubleDown(){
-    gameStats.currentBet = gameStats.currentBet * 2
-    document.getElementById("double").remove()
-    gameStats.renderMoney()
+    if(document.getElementById("double") === null){
+
+    }
+    else{
+        gameStats.currentBet = gameStats.currentBet * 2
+        document.getElementById("double").remove()
+        gameStats.renderMoney()
+    }
 }
 function displayResults(Message){
     let buttonBox = document.getElementById("buttonBox")
@@ -390,12 +395,18 @@ function displayResults(Message){
     gameStats.renderMoney()
 }
 //Result handling functions end
-function removeSurrender(){
+function removeAfterHit(){
     if(document.getElementById("surrender") === null){
 
     }
     else{
         document.getElementById("surrender").remove()
+    }
+    if(document.getElementById("double") === null){
+
+    }
+    else{
+        document.getElementById("double").remove()
     }
 }
 //playAgain resets buttons and deals
@@ -484,7 +495,7 @@ function deal(){
     gameStats.currentBet = 50
     gameStats.renderMoney()
     if(gameStats.playerMoney <= 25){
-        removeSurrender()
+        removeAfterHit()
     }
     if(playerHand.total === 21){
         blackjack()
