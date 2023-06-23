@@ -308,7 +308,7 @@ async function renderDealerTurn(){
 //Result handling functions start
 function playerWins(){
     console.log('player wins')
-    gameStats.playerMoney = gameStats.playerMoney + (gameStats.currentBet * 2)
+    gameStats.playerMoney = gameStats.playerMoney + gameStats.currentBet
     displayResults('You win!')
     gameStats.turnsPlayed++
     gameStats.wins++
@@ -380,6 +380,13 @@ function doubleDown(){
     else{
         gameStats.currentBet = gameStats.currentBet * 2
         document.getElementById("double").remove()
+        playerHit()
+        if(document.getElementById("hit") === null){
+
+        }
+        else{
+            document.getElementById("hit").remove()
+        }
         gameStats.renderMoney()
     }
 }
