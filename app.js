@@ -3,7 +3,7 @@ const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
 const values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
 let deck = [];
 const gameStats = {
-    playerMoney:  2500,
+    playerMoney:  1500,
     currentBet:  50,
     turnsPlayed:  0,
     wins: 0,
@@ -423,20 +423,20 @@ function playAgain(){
 }
 // resetGame resets money and starting text
 function resetGame(){
-    gameStats.playerMoney = 2500
+    gameStats.playerMoney = 1500
     gameStats.currentBet = 50
     gameStats.turnsPlayed = 0
     gameStats.renderMoney()
     deck = []
     buildDeck(6)
     let buttonBox = document.getElementById("buttonBox")
-    buttonBox.innerHTML = 'Welcome! This is my Blackjack game. The dealer stands on all totals 17 or higher. Face cards are worth 10 and aces are either 1 or 11. The goal is to get the highest number possible without going over 21! The bet is always $50 see how long before you go broke!<button id="start">Click here to begin</button>'
+    buttonBox.innerHTML = 'Welcome! This is my Blackjack game. The dealer stands on all totals 17 or higher. Face cards are worth 10 and aces are either 1 or 11. The goal is to get the highest number possible without going over 21! For a more in depth look at the rules see the README. The bet is always $50 see how long before you go broke!<button id="start">Click here to begin</button>'
     document.getElementById('start').addEventListener('click', playAgain)
 }
 function gameOver(){
     let buttonBox = document.getElementById("buttonBox")
     gameStats.calcWinLoss()
-    buttonBox.innerHTML = `Game Over. You ran out of money! Your 2500$ lasted you ${gameStats.turnsPlayed} Hands. Of which you lost ${gameStats.lossPercentage}% and won ${gameStats.winPercentage}%. Hit the button to play again!`
+    buttonBox.innerHTML = `Game Over. You ran out of money! Your 1500$ lasted you ${gameStats.turnsPlayed} Hands. Of which you lost ${gameStats.lossPercentage}% and won ${gameStats.winPercentage}%. Hit the button to play again!`
     let reset = document.createElement("button")
     reset.setAttribute("id", "resetGame")
     reset.innerHTML = "Try again"
