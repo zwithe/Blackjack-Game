@@ -445,6 +445,7 @@ function gameOver(){
 }
 // Dealer logic is here as well as the link to the result functions
 async function stand(){
+    document.getElementById("stand").removeEventListener("click", stand)
    await renderDealerTurn()
    dealerHand.countTotal()
     if(dealerHand.total <= 16){
